@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/pkpc1.0.css"/>
+	</head>
+	<body>
+		<div class="all">
+			<!--开始页面-->
+			<div id="ready">
+				<div class="rcontent">
+					<div class="rleft">
+						<img src="img/pk_record.png"/>
+						<div class="paiming_cont">
+							<table class="paiming" border="0">
+								<tr>
+									<th class="username">大名</th>
+									<th class="usertime">时间</th>
+									<th class="userscore">分数</th>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<div class="rright">
+						<div class="rright1">
+							<img src="img/pk_renwu.gif"/>
+						</div>
+						<div class="go">开始游戏</div>
+					</div>
+				</div>
+			</div>
+			
+			
+			<!--游戏界面-->
+			<div id="game">
+				<canvas id="canvas"></canvas>
+				<div class="btn1"></div>
+				<div class="btn2"></div>
+				<div class="title">
+					<div class="biaoxian">
+						<div class="bx_tu"></div>
+						<div class="bx_fen"></div>
+						<div class="bx_num"></div>
+					</div>
+					<div class="juli">
+						<div class="jl_tu"></div>
+						<div class="jl_mi"></div>
+						<div class="jl_num"></div>
+					</div>
+					<div class="stop"></div>
+				</div>
+				<div class="stop_cont">
+					<div class="stop_box">
+						<div class="stop_t">
+							<p class="zanting">暂停</p>
+						</div>
+						<div class="stop_b">
+							<div class="stop_b_box">
+								<div class="jixu">继续游戏</div>
+								<div class="chongxin">重新开始</div>
+								<div class="paiheng">排 行 榜</div>
+							</div>
+						</div>
+					</div>
+					
+					<div class="daojishi"></div>
+				</div>
+				<div class="power">
+					<p class="power_num">20%</p>
+					<div class="power_box"></div>
+					<div class="power_head"></div>
+				</div>
+				<div class="click"></div>
+				<div class="chong"></div>
+				<div class="die">
+					<div class="die_box">
+						<p class="jieshu">游戏结束！</p>
+						<p class="again">再来一局</p>
+						<p class="mark">查看成绩</p>
+					</div>
+				</div>
+			</div>
+			
+			<!--计分页面-->
+			<div id="ending">
+				<canvas id="canvas2"></canvas>
+				<div class="best"></div>
+				<div class="player">
+					<input type="text" class="p_name" placeholder="请输入您的大名"/>
+					<input type="button" class="p_btn" value="确定" />
+				</div>
+				<div class="ending_t">
+					<img src="img/pk_renwu.gif"/>
+					<div class="ending_t_box">
+						<img src="img/pk_total.png"/>
+						<p class="history">历史最高分<span class="zuigaofen"></span></p>
+						<div class="total_now">
+							<div class="total_one">
+								<p class="total_one1">距离</p>
+								<p class="total_one2">米</p>
+								<p class="total_juli">226</p>
+							</div>
+							<div class="total_two">
+								<p class="total_two1">表现</p>
+								<p class="total_two2">分</p>
+								<p class="total_fenshu">1555</p>
+							</div>
+							<div class="total_three">
+								<p class="total_three1">总 分</p>
+								<div class="total_all">
+									<p class="total_all_box"></p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="ending_b">
+					<p class="ending_b_back">返回</p>
+					<p class="ending_b_share">首页</p>
+				</div>
+			</div>
+		</div>
+		<script src="js/pkpc1.0.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>
