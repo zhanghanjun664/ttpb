@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+      canvas{
+        background-color: #269ABC;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas" width="500" height="500"></canvas>
+    <script type="text/javascript">
+      var canvas = document.getElementById("canvas");
+      var ctx = canvas.getContext("2d");
+      var data = [
+        {x:0,y:60},
+        {x:20,y:100},
+        {x:40,y:80},
+        {x:60,y:88},
+        {x:80,y:140},
+        {x:100,y:110},
+        {x:120,y:100},
+        {x:140,y:120},
+        {x:160,y:50},
+        {x:180,y:66},
+        {x:200,y:36},
+        {x:220,y:73},
+        {x:240,y:38},
+        {x:260,y:40}
+      ]
+      function draw(num){
+        var datas = data.slice(0,num)
+        ctx.clearRect(0,0,500,500)
+        ctx.beginPath();
+        ctx.moveTo(datas[0].x,datas[0].y);
+        for (var i =1;i<datas.length;i++) {
+            ctx.lineTo(datas[i].x,datas[i].y)
+        }
+        ctx.lineTo(datas[datas.length-1].x,490)
+        ctx.lineTo(0,490)
+        ctx.fillStyle = "red"
+        ctx.stroke();
+        ctx.fill()
+      }
+      
+      ctx.beginPath();
+      ctx.moveTo(0,0);
+      ctx.lineTo(20,50)
+      ctx.lineTo(50,20)
+      
+      //右边结束点
+      ctx.lineTo(50,490)
+      ctx.lineTo(0,490)
+      ctx.fillStyle = "red"
+      ctx.stroke();
+      ctx.fill()
+      var a = 0;
+      var go = setInterval(function(){
+        a++;
+        draw(a)
+        if(a == data.length){
+          clearInterval(go)
+        }
+      },1000)
+      
+    </script>
+  </body>
+</html>
