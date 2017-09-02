@@ -5,7 +5,7 @@
     <title></title>
     <style type="text/css">
       canvas{
-        background-color: #269ABC;
+        background-color: #1a242e;
       }
     </style>
   </head>
@@ -37,25 +37,75 @@
         ctx.moveTo(datas[0].x,datas[0].y);
         for (var i =1;i<datas.length;i++) {
             ctx.lineTo(datas[i].x,datas[i].y)
+////						ctx.moveTo(datas[i-1].x,datas[i-1].y)
+//						var diuY = datas[i].y - datas[i-1].y
+//						console.log(diuY)
+//						var diuX = diuY >=0 ? -1 : 1
+//						console.log(diuX)
+//						ctx.quadraticCurveTo(datas[i-1].x+diuX*10,datas[i-1].y+diuY*diuY,datas[i].x,datas[i].y)
         }
+        
+        
+        //闭合
         ctx.lineTo(datas[datas.length-1].x,490)
         ctx.lineTo(0,490)
+        
         ctx.fillStyle = "red"
-        ctx.stroke();
+//      ctx.stroke();
+				//渐变加透明
+				var lineGradient = ctx.createLinearGradient(0,0,0,490);
+				lineGradient.addColorStop(0, 'rgba(44,149,134,.8)');
+				lineGradient.addColorStop(1, 'rgba(44,149,134,.4)');
+				ctx.fillStyle = lineGradient;
         ctx.fill()
+        
+        //最后一点画水平线;80留着画箭头
+        ctx.beginPath()
+        ctx.moveTo(0,datas[datas.length-1].y)
+        ctx.lineTo(500-70,datas[datas.length-1].y)
+        //箭头
+        ctx.lineTo(500-60,datas[datas.length-1].y-12)
+        ctx.lineTo(500-5,datas[datas.length-1].y-12)
+        ctx.lineTo(500-5,datas[datas.length-1].y+12)
+        ctx.lineTo(500-60,datas[datas.length-1].y+12)
+        ctx.lineTo(500-70,datas[datas.length-1].y)
+        //箭头写字
+        ctx.font = "14px Arial"
+        ctx.textBaseline = "middle"
+        ctx.fillText(datas[datas.length-1].y,500-50,datas[datas.length-1].y)
+        
+        ctx.strokeStyle = "#2c9586"
+        ctx.stroke()
+        ctx.closePath()
+        
+        
+        //最后一点径向渐变
+        ctx.beginPath()
+        var radialGradient = ctx.createRadialGradient(datas[datas.length-1].x,datas[datas.length-1].y,0,datas[datas.length-1].x,datas[datas.length-1].y,8)
+        radialGradient.addColorStop(0, 'rgba(44,149,134,1)')
+        radialGradient.addColorStop(1, 'rgba(44,149,134,.6)')
+//      ctx.fillStyle = radialGradient
+//      ctx.fillRect(datas[datas.length-1].x-10,datas[datas.length-1].y-10,20,20)
+				//最后一点画圆
+				ctx.arc(datas[datas.length-1].x,datas[datas.length-1].y,5,0,Math.PI*2)
+				ctx.fillStyle = radialGradient
+				ctx.fill()
+        
+        
+        
       }
       
-      ctx.beginPath();
-      ctx.moveTo(0,0);
-      ctx.lineTo(20,50)
-      ctx.lineTo(50,20)
-      
-      //右边结束点
-      ctx.lineTo(50,490)
-      ctx.lineTo(0,490)
-      ctx.fillStyle = "red"
-      ctx.stroke();
-      ctx.fill()
+//    ctx.beginPath();
+//    ctx.moveTo(0,0);
+//    ctx.lineTo(20,50)
+//    ctx.lineTo(50,20)
+//    
+//    //右边结束点
+//    ctx.lineTo(50,490)
+//    ctx.lineTo(0,490)
+//    ctx.fillStyle = "red"
+//    ctx.stroke();
+//    ctx.fill()
       var a = 0;
       var go = setInterval(function(){
         a++;
@@ -63,7 +113,15 @@
         if(a == data.length){
           clearInterval(go)
         }
-      },1000)
+      },500)
+      
+//    ctx.beginPath()
+//    var radialGradient = ctx.createRadialGradient(10,10,20,10,10,40)
+//      radialGradient.addColorStop(0, 'rgba(44,149,134,1)')
+//      radialGradient.addColorStop(1, 'rgba(44,149,134,.5)')
+//      ctx.fillStyle = radialGradient
+////      ctx.fillRect(0,0,500,500)
+//				ctx.arc(10,10,20,0,2*Math.PI)
       
     </script>
   </body>
