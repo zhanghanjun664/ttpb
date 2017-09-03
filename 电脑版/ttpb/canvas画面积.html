@@ -33,6 +33,18 @@
       function draw(num){
         var datas = data.slice(0,num)
         ctx.clearRect(0,0,500,500)
+        
+        //虚线
+        ctx.beginPath()
+        ctx.moveTo(0,50)
+        ctx.lineTo(500,50)
+        ctx.setLineDash([5,4])
+        ctx.strokeStyle = "#eeeeee"
+        ctx.stroke()
+        ctx.closePath()
+        
+        
+        
         ctx.beginPath();
         ctx.moveTo(datas[0].x,datas[0].y);
         for (var i =1;i<datas.length;i++) {
@@ -44,18 +56,21 @@
 //						console.log(diuX)
 //						ctx.quadraticCurveTo(datas[i-1].x+diuX*10,datas[i-1].y+diuY*diuY,datas[i].x,datas[i].y)
         }
+        ctx.strokeStyle = "#32b9a1"
+        ctx.setLineDash([0])
+        ctx.stroke()
         
         
         //闭合
         ctx.lineTo(datas[datas.length-1].x,490)
         ctx.lineTo(0,490)
         
-        ctx.fillStyle = "red"
+//      ctx.fillStyle = "red"
 //      ctx.stroke();
 				//渐变加透明
 				var lineGradient = ctx.createLinearGradient(0,0,0,490);
 				lineGradient.addColorStop(0, 'rgba(44,149,134,.8)');
-				lineGradient.addColorStop(1, 'rgba(44,149,134,.4)');
+				lineGradient.addColorStop(1, 'rgba(44,149,134,.1)');
 				ctx.fillStyle = lineGradient;
         ctx.fill()
         
@@ -94,18 +109,7 @@
         
         
       }
-      
-//    ctx.beginPath();
-//    ctx.moveTo(0,0);
-//    ctx.lineTo(20,50)
-//    ctx.lineTo(50,20)
-//    
-//    //右边结束点
-//    ctx.lineTo(50,490)
-//    ctx.lineTo(0,490)
-//    ctx.fillStyle = "red"
-//    ctx.stroke();
-//    ctx.fill()
+
       var a = 0;
       var go = setInterval(function(){
         a++;
@@ -114,14 +118,7 @@
           clearInterval(go)
         }
       },500)
-      
-//    ctx.beginPath()
-//    var radialGradient = ctx.createRadialGradient(10,10,20,10,10,40)
-//      radialGradient.addColorStop(0, 'rgba(44,149,134,1)')
-//      radialGradient.addColorStop(1, 'rgba(44,149,134,.5)')
-//      ctx.fillStyle = radialGradient
-////      ctx.fillRect(0,0,500,500)
-//				ctx.arc(10,10,20,0,2*Math.PI)
+
       
     </script>
   </body>
