@@ -4,7 +4,7 @@ var current = {
 	buyStopTime:"",
 	periodTime:""
 }
-var hadBuy = 1;
+var hadBuy = false;
 
 function updateLength(){
 	switch (String(activeType)){
@@ -12,16 +12,16 @@ function updateLength(){
 			maxLength = 60;
 			break;
 		case "2":
-			maxLength = 60;
-			break;
-		case "3":
 			maxLength = 120;
 			break;
-		case "4":
+		case "3":
 			maxLength = 240;
 			break;
+		case "4":
+			maxLength = 360;
+			break;
 		case "5":
-			maxLength = 240;
+			maxLength = 600;
 			break;
 		case "6":
 			maxLength = 3600; 
@@ -43,19 +43,73 @@ function getData(type){
 			console.log(data)
 			if(datas.length){
 				
-				dataBox = datas
+//				dataBox = datas
 				console.log(dataBox)
 				//第一次
-				if(!current.buyStopTime || getTime(current.buyStopTime)<=getTime(data.data.buyStopTime)){
-					current.buyStopTime = data.data.buyStopTime
-					current.periodTime = data.data.periodTime
+//				if(!current.buyStopTime || getTime(current.buyStopTime)<=getTime(data.data.buyStopTime)){
+//					current.buyStopTime = data.data.buyStopTime
+//					current.periodTime = data.data.periodTime
+//				}
+        //没买的时候，检测更新
+        if(!hadBuy){
+          current.buyStopTime = data.data.buyStopTime
+          current.periodTime = data.data.periodTime
+        }
+        //第一次
+				if(!dataBox){
+				  dataBox = datas
+				}else{
+				  //买了
+				  if(hadBuy){
+				    //买了要到结算点才更新
+				    if(dataBox.length >= maxLength*3/2){
+  				    //开奖,清空订单
+  				    hadBuy = false;
+  				    dataBox = datas
+  				    current.buyStopTime = data.data.buyStopTime
+              current.periodTime = data.data.periodTime
+				      
+				    }else{
+				      //还没开奖继续加数据
+				      dataBox.push(datas[datas.length-1])
+				    }
+				    
+				    
+				  }else{
+				    //没买
+				    if(dataBox.length >= maxLength){
+				      //到了重新来过
+				      dataBox = datas
+				      
+				    }else{
+				      //还没到，继续加数据
+  				    dataBox.push(datas[datas.length-1])
+				    }
+				  }
+				  
 				}
 				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				//X,Y轴数据拿出来
 				dataBox.forEach(function(item){
 					var time = getTime(item[0])
 					dataX.push(time)
 					dataY.push(Number(item[1]))
 				})
+				
+				
+				
 				
 				var minY = Math.min.apply(null,dataY)
 				var diuY = (Math.max.apply(null,dataY) - Math.min.apply(null,dataY)+20)/4
